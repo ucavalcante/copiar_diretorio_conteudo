@@ -87,9 +87,13 @@ namespace CopiarDiretorioEConteudo
                 }
             }
         }
+        
 
         private async void btnCopiar_Click(object sender, EventArgs e)
         {
+            int qtdSucesso = 0;
+            int qtdFalha = 0;
+
             txbStatus.Text = "";
             carregarMaquinas();
 
@@ -117,16 +121,21 @@ namespace CopiarDiretorioEConteudo
 
                     if (t == 1)
                     {
-                        
+                        qtdSucesso++;
+                        lblQtdSucesso.Text = Convert.ToString(qtdSucesso);
                         log.GravarLog("Copia realizada com sucesso para\r\n " + item + "\r\n--------------", GetType().Name.ToString());
                         txbStatus.AppendText(item + " Copia Realizada.\r\n");
                         //txbStatus.Invoke((MethodInvoker)(() => txbStatus.Text = txbStatus.Text + "\r\n" + item + " Copia Realizada."));
                     }
                     else
                     {
+                        qtdFalha++;
+                        lblQtdFalha.Text = Convert.ToString(qtdFalha);
+
                         txbStatus.AppendText(item + " Falha: " + message + "\r\n");
                         //txbStatus.Text = txbStatus.Text + "\r\n" + item + " Falha: " + message;
                     }
+                    lblQtdTotal.Text = Convert.ToString(qtdFalha + qtdSucesso);
                 }
                 catch (Exception ex)
                 {
