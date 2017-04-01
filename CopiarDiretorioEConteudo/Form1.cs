@@ -87,29 +87,34 @@ namespace CopiarDiretorioEConteudo
                 }
             }
         }
-        
 
+        string message = "";
         private async void btnCopiar_Click(object sender, EventArgs e)
         {
             int qtdSucesso = 0;
             int qtdFalha = 0;
-
             txbStatus.Text = "";
-            carregarMaquinas();
 
-            //progressBar1
+            try
+            {
+                carregarMaquinas();
 
-            // Display the ProgressBar control.
-            progressBar1.Visible = true;
-            // Set Minimum to 1 to represent the first file being copied.
-            progressBar1.Minimum = 1;
-            // Set Maximum to the total number of files to copy.
-            progressBar1.Maximum = maquinas.Count;
-            // Set the initial value of the ProgressBar.
-            progressBar1.Value = 1;
-            // Set the Step property to a value of 1 to represent each file being copied.
-            progressBar1.Step = 1;
-            string message = "";
+                // Display the ProgressBar control.
+                progressBar1.Visible = true;
+                // Set Minimum to 1 to represent the first file being copied.
+                progressBar1.Minimum = 1;
+                // Set Maximum to the total number of files to copy.
+                progressBar1.Maximum = maquinas.Count;
+                // Set the initial value of the ProgressBar.
+                progressBar1.Value = 1;
+                // Set the Step property to a value of 1 to represent each file being copied.
+                progressBar1.Step = 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao carregar arquivo de maquinas:\r\n" + ex.Message);
+            }
+           
             foreach (string item in maquinas)
             {
                 try
@@ -117,7 +122,7 @@ namespace CopiarDiretorioEConteudo
                     message = "";
                     progressBar1.PerformStep();
 
-                    int t = await Task.Run(() => executarCopia());
+                    int t = await Task.Run(() => executarCopia(item));
 
                     if (t == 1)
                     {
@@ -132,7 +137,7 @@ namespace CopiarDiretorioEConteudo
                         qtdFalha++;
                         lblQtdFalha.Text = Convert.ToString(qtdFalha);
 
-                        txbStatus.AppendText(item + " Falha: " + message + "\r\n");
+                        txbStatus.AppendText(item + " Falha: " + message);
                         //txbStatus.Text = txbStatus.Text + "\r\n" + item + " Falha: " + message;
                     }
                     lblQtdTotal.Text = Convert.ToString(qtdFalha + qtdSucesso);
@@ -148,16 +153,19 @@ namespace CopiarDiretorioEConteudo
             
         }
 
-        public int executarCopia()
+        public int executarCopia(string nomeMaquina)
         {
             try
             {
-                System.Threading.Thread.Sleep(500);
-                //DirectoryCopy(txbDirFonte.Text, "\\\\" + item + txbDestino.Text, true,chkBxSobrescrever.Checked);
+                System.Threading.Thread.Sleep(50);
+#if !DEBUG
+                 Copiadora.DirectoryCopy(txbDirFonte.Text, "\\\\" + nomeMaquina + txbDestino.Text, true,chkBxSobrescrever.Checked);
+#endif                
                 return 1;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                message = ex.Message;
                 return 0;
             }
             

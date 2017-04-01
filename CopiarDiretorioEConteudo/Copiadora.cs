@@ -31,7 +31,7 @@ namespace CopiarDiretorioEConteudo
             
         }
 
-        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool overWriteFiles)
+        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool overWriteFiles)
         {
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
             DirectoryInfo[] dirs = dir.GetDirectories();
