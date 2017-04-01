@@ -42,6 +42,7 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.txbStatus = new System.Windows.Forms.TextBox();
             this.chkBxSobrescrever = new System.Windows.Forms.CheckBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // txbDirFonte
@@ -84,7 +85,7 @@
             this.txbDestino.Name = "txbDestino";
             this.txbDestino.Size = new System.Drawing.Size(339, 20);
             this.txbDestino.TabIndex = 4;
-            this.txbDestino.Text = "\\C$\\Apps\\InstalarUagent";
+            this.txbDestino.Text = "\\C$\\scripts";
             // 
             // label1
             // 
@@ -155,7 +156,8 @@
             this.txbStatus.Location = new System.Drawing.Point(15, 165);
             this.txbStatus.Multiline = true;
             this.txbStatus.Name = "txbStatus";
-            this.txbStatus.Size = new System.Drawing.Size(417, 64);
+            this.txbStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txbStatus.Size = new System.Drawing.Size(417, 95);
             this.txbStatus.TabIndex = 12;
             // 
             // chkBxSobrescrever
@@ -168,11 +170,21 @@
             this.chkBxSobrescrever.Text = "Sobrescrever Arquivos";
             this.chkBxSobrescrever.UseVisualStyleBackColor = true;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(15, 266);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(417, 23);
+            this.progressBar1.TabIndex = 14;
+            // 
             // CopiarDiretorioEConteudo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 241);
+            this.ClientSize = new System.Drawing.Size(444, 301);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.chkBxSobrescrever);
             this.Controls.Add(this.txbStatus);
             this.Controls.Add(this.lblStatus);
@@ -208,6 +220,8 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.TextBox txbStatus;
         private System.Windows.Forms.CheckBox chkBxSobrescrever;
+        private System.Windows.Forms.ProgressBar progressBar1;
+
     }
 }
 

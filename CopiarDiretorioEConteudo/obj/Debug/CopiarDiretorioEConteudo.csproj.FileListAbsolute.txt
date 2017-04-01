@@ -7,3 +7,12 @@ C:\Users\ziel7\Source\Workspaces\CarregamentoDeBases\CopiarDiretorioEConteudo\Co
 C:\Users\ziel7\Source\Workspaces\CarregamentoDeBases\CopiarDiretorioEConteudo\CopiarDiretorioEConteudo\bin\Debug\CopiarDiretorioEConteudo.pdb
 C:\Users\ziel7\Source\Workspaces\CarregamentoDeBases\CopiarDiretorioEConteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.exe
 C:\Users\ziel7\Source\Workspaces\CarregamentoDeBases\CopiarDiretorioEConteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.pdb
+C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\bin\Debug\CopiarDiretorioEConteudo.exe.config
+C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\bin\Debug\CopiarDiretorioEConteudo.exe
+C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\bin\Debug\CopiarDiretorioEConteudo.pdb
+C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.csprojResolveAssemblyReference.cache
+C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.CopiarDiretorioEConteudo.resources
+C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.Properties.Resources.resources
+C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.csproj.GenerateResource.Cache
+C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.exe
+C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.pdb

@@ -88,27 +88,71 @@ namespace CopiarDiretorioEConteudo
             }
         }
 
-        private void btnCopiar_Click(object sender, EventArgs e)
+        private async void btnCopiar_Click(object sender, EventArgs e)
         {
             txbStatus.Text = "";
             carregarMaquinas();
+
+            //progressBar1
+
+            // Display the ProgressBar control.
+            progressBar1.Visible = true;
+            // Set Minimum to 1 to represent the first file being copied.
+            progressBar1.Minimum = 1;
+            // Set Maximum to the total number of files to copy.
+            progressBar1.Maximum = maquinas.Count;
+            // Set the initial value of the ProgressBar.
+            progressBar1.Value = 1;
+            // Set the Step property to a value of 1 to represent each file being copied.
+            progressBar1.Step = 1;
+            string message = "";
             foreach (string item in maquinas)
             {
                 try
                 {
-                    //DirectoryCopy(txbDirFonte.Text, "\\\\" + item + txbDestino.Text, true,chkBxSobrescrever.Checked);
-                    System.Threading.Thread.Sleep(500);
+                    message = "";
+                    progressBar1.PerformStep();
 
+                    int t = await Task.Run(() => executarCopia());
 
-                    log.GravarLog("Copia realizada com sucesso para\r\n " + item+ "\r\n--------------", GetType().Name.ToString());
-                    txbStatus.Invoke ((MethodInvoker)  (() => txbStatus.Text = txbStatus.Text + "\r\n" + item + " Copia Realizada."));
+                    if (t == 1)
+                    {
+                        
+                        log.GravarLog("Copia realizada com sucesso para\r\n " + item + "\r\n--------------", GetType().Name.ToString());
+                        txbStatus.AppendText(item + " Copia Realizada.\r\n");
+                        //txbStatus.Invoke((MethodInvoker)(() => txbStatus.Text = txbStatus.Text + "\r\n" + item + " Copia Realizada."));
+                    }
+                    else
+                    {
+                        txbStatus.AppendText(item + " Falha: " + message + "\r\n");
+                        //txbStatus.Text = txbStatus.Text + "\r\n" + item + " Falha: " + message;
+                    }
                 }
                 catch (Exception ex)
                 {
                     log.GravarLog(ex.Message, GetType().Name.ToString());
-                    txbStatus.Text = txbStatus.Text + "\r\n" + item + " Falha: " + ex.Message;
+                    message = ex.Message;
+                    MessageBox.Show(ex.Message);
                 }
             }
+            MessageBox.Show("Processo Concluido");
+            
+        }
+
+        public int executarCopia()
+        {
+            try
+            {
+                System.Threading.Thread.Sleep(500);
+                //DirectoryCopy(txbDirFonte.Text, "\\\\" + item + txbDestino.Text, true,chkBxSobrescrever.Checked);
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+            
+            
         }
     }
 }
