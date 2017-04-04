@@ -88,13 +88,15 @@ namespace CopiarDiretorioEConteudo
             }
         }
 
-        string message = "";
+        
+        Queue<string> mensagens = new Queue<string>();
+
         private async void btnCopiar_Click(object sender, EventArgs e)
         {
             int qtdSucesso = 0;
             int qtdFalha = 0;
             txbStatus.Text = "";
-
+            
             try
             {
                 carregarMaquinas();
@@ -119,54 +121,53 @@ namespace CopiarDiretorioEConteudo
             {
                 try
                 {
-                    message = "";
                     progressBar1.PerformStep();
 
-                    int t = await Task.Run(() => executarCopia(item));
+                    bool t = await Task.Run(() => CopiaRealizada(item));
 
-                    if (t == 1)
+                    if (t)
                     {
                         qtdSucesso++;
                         lblQtdSucesso.Text = Convert.ToString(qtdSucesso);
-                        log.GravarLog("Copia realizada com sucesso para\r\n " + item + "\r\n--------------", GetType().Name.ToString());
-                        txbStatus.AppendText(item + " Copia Realizada.\r\n");
-                        //txbStatus.Invoke((MethodInvoker)(() => txbStatus.Text = txbStatus.Text + "\r\n" + item + " Copia Realizada."));
                     }
                     else
                     {
                         qtdFalha++;
                         lblQtdFalha.Text = Convert.ToString(qtdFalha);
-
-                        txbStatus.AppendText(item + " Falha: " + message);
-                        //txbStatus.Text = txbStatus.Text + "\r\n" + item + " Falha: " + message;
                     }
                     lblQtdTotal.Text = Convert.ToString(qtdFalha + qtdSucesso);
                 }
                 catch (Exception ex)
                 {
                     log.GravarLog(ex.Message, GetType().Name.ToString());
-                    message = ex.Message;
+                    
                     MessageBox.Show(ex.Message);
+                }
+                while (mensagens.Count > 0)
+                {
+                    txbStatus.AppendText(mensagens.Dequeue());
                 }
             }
             MessageBox.Show("Processo Concluido");
             
         }
 
-        public int executarCopia(string nomeMaquina)
+        public bool CopiaRealizada(string nomeMaquina)
         {
             try
             {
-                System.Threading.Thread.Sleep(50);
 #if !DEBUG
                  Copiadora.DirectoryCopy(txbDirFonte.Text, "\\\\" + nomeMaquina + txbDestino.Text, true,chkBxSobrescrever.Checked);
-#endif                
-                return 1;
+#endif          
+                log.GravarLog("Copia realizada com sucesso para\r\n " + nomeMaquina + "\r\n--------------", GetType().Name.ToString());
+                mensagens.Enqueue(nomeMaquina + " Copia Realizada.");
+                return true;
             }
             catch (Exception ex)
             {
-                message = ex.Message;
-                return 0;
+                log.GravarLog(ex.Message, GetType().Name.ToString());
+                mensagens.Enqueue(nomeMaquina + " Falha: " + ex.Message);
+                return false;
             }
             
             
