@@ -20,7 +20,7 @@ namespace CopiarDiretorioEConteudo
                 {
                     diretoriolog.Create();
                 }
-                using (StreamWriter sw = File.AppendText(diretoriolog + "\\" + "Log_" + Process.GetCurrentProcess().ProcessName + "_" + DateTime.Now.ToString("yyyy_MM_dd") + ".txt"))
+                using (StreamWriter sw = File.AppendText(diretoriolog + "\\" + "Log_" + Process.GetCurrentProcess().ProcessName + "_" + DateTime.Now.ToString("yyyy_MM_dd") + ".log"))
                 {
                     sw.WriteLine();
                     sw.WriteLine("-------" + DateTime.Now + "-------");

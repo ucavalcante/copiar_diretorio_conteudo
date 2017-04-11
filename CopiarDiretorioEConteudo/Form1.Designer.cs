@@ -59,7 +59,7 @@
             this.txbDirFonte.Name = "txbDirFonte";
             this.txbDirFonte.Size = new System.Drawing.Size(339, 20);
             this.txbDirFonte.TabIndex = 0;
-            this.txbDirFonte.Text = "\\\\130.1.0.15\\Extra\\Altitude\\configuracaoAgente";
+            this.txbDirFonte.Text = "\\\\credi010\\Softlib\\Altitude\\script";
             // 
             // btnDiretorioOrigem
             // 
@@ -128,7 +128,7 @@
             this.txbArqMaquinas.Name = "txbArqMaquinas";
             this.txbArqMaquinas.Size = new System.Drawing.Size(339, 20);
             this.txbArqMaquinas.TabIndex = 9;
-            this.txbArqMaquinas.Text = "\\\\130.1.0.15\\Extra\\Altitude\\maquinas.txt";
+            this.txbArqMaquinas.Text = "\\\\credi010\\Softlib\\Altitude\\maquinas.txt";
             // 
             // btnCarregarArquivos
             // 

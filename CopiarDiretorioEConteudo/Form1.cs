@@ -23,22 +23,22 @@ namespace CopiarDiretorioEConteudo
         ArrayList maquinas = new ArrayList();
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
 
         }
 
 
-       
+
         private void button3_Click(object sender, EventArgs e)
         {
             FileInfo arquivo = new FileInfo(txbArqMaquinas.Text);
 
-            if (Directory.Exists( arquivo.Directory.ToString()))
+            if (Directory.Exists(arquivo.Directory.ToString()))
             {
                 openFileDialog1.InitialDirectory = arquivo.Directory.ToString();
                 openFileDialog1.FileName = txbArqMaquinas.Text;
             }
-            if (openFileDialog1.ShowDialog() == DialogResult.OK )
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
@@ -47,7 +47,7 @@ namespace CopiarDiretorioEConteudo
                 }
                 catch (Exception ex)
                 {
-                    
+
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
@@ -59,8 +59,8 @@ namespace CopiarDiretorioEConteudo
             {
                 folderBrowserDialog1.SelectedPath = txbDirFonte.Text;
             }
-            
-            if (folderBrowserDialog1.ShowDialog()== DialogResult.OK)
+
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
@@ -88,15 +88,17 @@ namespace CopiarDiretorioEConteudo
             }
         }
 
-        
+
         Queue<string> mensagens = new Queue<string>();
 
         private async void btnCopiar_Click(object sender, EventArgs e)
         {
+            log.GravarLog("Iniciando copia dos arquivos contidos em:"+txbDirFonte.Text+ "\r\nPara as Maquinas dentro do arquivo"+txbArqMaquinas.Text , GetType().Name.ToString());
+            btnCopiar.Enabled = false;
             int qtdSucesso = 0;
             int qtdFalha = 0;
             txbStatus.Text = "";
-            
+
             try
             {
                 carregarMaquinas();
@@ -104,11 +106,11 @@ namespace CopiarDiretorioEConteudo
                 // Display the ProgressBar control.
                 progressBar1.Visible = true;
                 // Set Minimum to 1 to represent the first file being copied.
-                progressBar1.Minimum = 1;
+                progressBar1.Minimum = 0;
                 // Set Maximum to the total number of files to copy.
                 progressBar1.Maximum = maquinas.Count;
                 // Set the initial value of the ProgressBar.
-                progressBar1.Value = 1;
+                progressBar1.Value = 0;
                 // Set the Step property to a value of 1 to represent each file being copied.
                 progressBar1.Step = 1;
             }
@@ -116,13 +118,11 @@ namespace CopiarDiretorioEConteudo
             {
                 MessageBox.Show("Falha ao carregar arquivo de maquinas:\r\n" + ex.Message);
             }
-           
+
             foreach (string item in maquinas)
             {
                 try
                 {
-                    progressBar1.PerformStep();
-
                     bool t = await Task.Run(() => CopiaRealizada(item));
 
                     if (t)
@@ -136,11 +136,12 @@ namespace CopiarDiretorioEConteudo
                         lblQtdFalha.Text = Convert.ToString(qtdFalha);
                     }
                     lblQtdTotal.Text = Convert.ToString(qtdFalha + qtdSucesso);
+                    progressBar1.PerformStep();
                 }
                 catch (Exception ex)
                 {
                     log.GravarLog(ex.Message, GetType().Name.ToString());
-                    
+
                     MessageBox.Show(ex.Message);
                 }
                 while (mensagens.Count > 0)
@@ -149,7 +150,8 @@ namespace CopiarDiretorioEConteudo
                 }
             }
             MessageBox.Show("Processo Concluido");
-            
+            btnCopiar.Enabled = true;
+            log.GravarLog("Copia Finalizada dos arquivos contidos em:" + txbDirFonte.Text + "\r\nPara as Maquinas dentro do arquivo:" + txbArqMaquinas.Text, GetType().Name.ToString());
         }
 
         public bool CopiaRealizada(string nomeMaquina)
@@ -157,20 +159,30 @@ namespace CopiarDiretorioEConteudo
             try
             {
 #if !DEBUG
-                 Copiadora.DirectoryCopy(txbDirFonte.Text, "\\\\" + nomeMaquina + txbDestino.Text, true,chkBxSobrescrever.Checked);
+                Copiadora.DirectoryCopy(txbDirFonte.Text, "\\\\" + nomeMaquina + txbDestino.Text, true, chkBxSobrescrever.Checked);
 #endif          
-                log.GravarLog("Copia realizada com sucesso para\r\n " + nomeMaquina + "\r\n--------------", GetType().Name.ToString());
-                mensagens.Enqueue(nomeMaquina + " Copia Realizada.");
+                string msg = "Maquina: " + nomeMaquina + " Copia realizada com sucesso";
+                if (!msg.EndsWith("\r\n"))
+                {
+                    msg = msg + "\r\n";
+                }
+                log.GravarLog(msg, GetType().Name.ToString());
+                mensagens.Enqueue(msg);
                 return true;
             }
             catch (Exception ex)
             {
-                log.GravarLog(ex.Message, GetType().Name.ToString());
-                mensagens.Enqueue(nomeMaquina + " Falha: " + ex.Message);
+                string msg = "Maquina: " + nomeMaquina + " Falha: " + ex.Message;
+                if (!msg.EndsWith("\r\n"))
+                {
+                    msg = msg + "\r\n";
+                }
+                log.GravarLog(msg, GetType().Name.ToString());
+                mensagens.Enqueue(msg);
                 return false;
             }
-            
-            
+
+
         }
     }
 }

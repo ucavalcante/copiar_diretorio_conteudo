@@ -1,1 +1,4 @@
-CopiarDiretorioEConteudo/bin/Debug/Log_CopiarDiretorioEConteudo_2017_03_31.txt
+*.log
+*.exe
+*.pdb
+*.cache
