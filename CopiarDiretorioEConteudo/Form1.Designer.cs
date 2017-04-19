@@ -91,7 +91,7 @@
             this.txbDestino.Name = "txbDestino";
             this.txbDestino.Size = new System.Drawing.Size(339, 20);
             this.txbDestino.TabIndex = 4;
-            this.txbDestino.Text = "\\C$\\scripts";
+            this.txbDestino.Text = "\\C$\\script";
             // 
             // label1
             // 

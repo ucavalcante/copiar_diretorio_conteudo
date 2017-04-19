@@ -16,3 +16,12 @@ C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioECont
 C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.csproj.GenerateResource.Cache
 C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.exe
 C:\Users\ziel7\Source\Repos\teste\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.pdb
+C:\Users\ulisses.cavalcante\Source\Repos\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\bin\Debug\CopiarDiretorioEConteudo.exe.config
+C:\Users\ulisses.cavalcante\Source\Repos\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\bin\Debug\CopiarDiretorioEConteudo.exe
+C:\Users\ulisses.cavalcante\Source\Repos\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\bin\Debug\CopiarDiretorioEConteudo.pdb
+C:\Users\ulisses.cavalcante\Source\Repos\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.csprojResolveAssemblyReference.cache
+C:\Users\ulisses.cavalcante\Source\Repos\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.CopiarDiretorioEConteudo.resources
+C:\Users\ulisses.cavalcante\Source\Repos\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.Properties.Resources.resources
+C:\Users\ulisses.cavalcante\Source\Repos\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.csproj.GenerateResource.Cache
+C:\Users\ulisses.cavalcante\Source\Repos\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.exe
+C:\Users\ulisses.cavalcante\Source\Repos\copiar_diretorio_conteudo\CopiarDiretorioEConteudo\obj\Debug\CopiarDiretorioEConteudo.pdb
